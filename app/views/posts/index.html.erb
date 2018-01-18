@@ -1,0 +1,62 @@
+<div id="main">
+	<div class="inner">
+		<!-- Header -->
+		<header id="header">
+			<img src="../images/header.png" alt="" />
+			<section id="search" class="alt">
+				<form action="/">
+					<input type="text" name="q" id="query" placeholder="#태그검색" style="width: 50%; float: right" />
+				</form>
+			</section>
+		</header>
+	  <!-- Section -->
+		<section>
+			<%= link_to "새글쓰기", new_post_path, class: "button", style: "float: right;" %></p>
+			<div class="posts">
+				<% @posts.each do |post| %>
+				<article>
+					<img src="<%= post.image.small %>"width: 300px>
+					<!-- <a href="#" class="image"><img src="images/pic01.jpg" alt="" /></a> -->
+					<h3><%= post.title %></h3>
+					<p>
+						<% if post.status == true%>
+                <i class="fas fa-tint fa-sm" style="font-size:3em; color:#0055FF"></i>녹는중...
+	          <%else%>
+	            <a></a>
+	          <%end%>
+					</p>
+					<p><%= post.content %></p>
+					<ul class="actions">
+						<li><%= link_to 'More', post, class: "button" %></li>
+						<!--<li><a href="#" class="button">More</a></li>-->
+					</ul>
+				</article>
+				<% end %>
+			</div>
+		</section>
+	</div>
+</div>
+<!-- Sidebar -->
+<div id="sidebar">
+	<div class="inner">
+		<nav id="menu">
+			<header class="major">
+				<h2>내 페이지</h2>
+			</header>
+			<ul>
+				<li><%= current_user.username %>님 환영합니다.</li>
+				<li><%= link_to "홈으로", root_path %></li>
+				<li><%= link_to "내 피드", my_feed_posts_path %></li>
+				<li><%= link_to "로그아웃", destroy_user_session_path, method: :delete %></li>
+			</ul>
+		</nav>
+	</div>
+</div>
+
+<!-- Scripts -->
+<!--<link rel="stylesheet" href="../assets/css/main.css" />-->
+<script src="../assets/js/jquery.min.js"></script>
+<script src="../assets/js/skel.min.js"></script>
+<script src="../assets/js/util.js"></script>
+<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+<script src="../assets/js/main.js"></script>
